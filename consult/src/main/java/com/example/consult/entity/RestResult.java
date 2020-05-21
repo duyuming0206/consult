@@ -40,6 +40,12 @@ public class RestResult {
         this.setMessage(code.msg());
     }
 
+    public RestResult(ResultCode code, Object data) {
+        this.setCode(code);
+        this.setMessage(code.msg());
+        this.setData(data);
+    }
+
     public RestResult(ResultCode code, String message) {
         this.setCode(code);
         this.setMessage(message);
