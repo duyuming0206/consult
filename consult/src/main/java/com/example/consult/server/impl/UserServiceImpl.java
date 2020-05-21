@@ -28,15 +28,19 @@ public class UserServiceImpl implements UserService {
     //注册
     @Override
     public RestResult regist(User user) {
-        User user1 = userDao.getByEmail(user.getEmail());
-        if (user1 != null){
-            return new RestResult(ResultCode.FAIL,"该邮箱已经被注册");
+        try {
+            User user1 = userDao.getByEmail(user.getEmail());
+            if (user1 != null){
+                return new RestResult(ResultCode.FAIL,"该邮箱已经被注册");
+            }
+            userDao.addUser(user);
+            
+           return new RestResult(ResultCode.SUCCESS);
         }
-        int isSuccess = userDao.addUser(user);
-        if (isSuccess == 1){
-            return new RestResult(ResultCode.SUCCESS);
+        catch (Exception e) {
+            return new RestResult(ResultCode.ERROR,e.getMessage());
         }
-        return new RestResult(ResultCode.ERROR);
+        
     }
 
     //登录
