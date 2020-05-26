@@ -6,6 +6,7 @@ import com.example.consult.entity.User;
 import org.springframework.http.HttpRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public interface UserService {
 
@@ -16,4 +17,8 @@ public interface UserService {
     public RestResult login(User user, HttpServletRequest request);
 
     public RestResult emailCheak(String email);
+
+    public RestResult deleteUser(int[] list);
+
+    public RestResult updateUser(User user, HttpServletRequest request);
 }
