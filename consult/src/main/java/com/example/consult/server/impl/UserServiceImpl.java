@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public RestResult deleteUser(int[] list) {
         try {
-            for (int i = 1; i < list.length; i++){
+            for (int i = 0; i < list.length; i++){
                 userDao.deleteUser(list[i]);
             }
             return new RestResult(ResultCode.SUCCESS);

@@ -9,6 +9,26 @@ public class Comment {
     private int acticleID;
     private Date createdTime;
     private String content;
+    private int valid;
+    private String changeTime;
+
+    public String getChangeTime() {
+        return changeTime;
+    }
+
+    public void setChangeTime(String changeTime) {
+        this.changeTime = changeTime;
+    }
+
+    public int getValid() {
+        return valid;
+    }
+
+    public void setValid(int valid) {
+        this.valid = valid;
+    }
+
+
 
     public int getId() {
         return id;
