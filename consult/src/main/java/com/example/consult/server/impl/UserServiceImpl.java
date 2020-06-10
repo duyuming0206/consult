@@ -96,12 +96,41 @@ public class UserServiceImpl implements UserService {
             userDao.updateUser(user);
             User user1 = userDao.getByEmail(user.getEmail());
             HttpSession session = request.getSession();
-            session.removeAttribute("user");
             session.setAttribute("user", user1);
             return new RestResult(ResultCode.SUCCESS, user1);
         }catch (Exception e){
             return new RestResult(ResultCode.ERROR, e.getMessage());
         }
+    }
+    @Override
+    public RestResult getuser(HttpServletRequest request) {
+        User user= (User)request.getSession().getAttribute("user");
+        if(user==null)
+        {
+            user=new User();
+             user.setAddress("a");
+             user.setBlock("b");
+             user.setPhone("p");
+             user.setEmail("asdads");
+             user.setId(3);
+             user.setName("n");
+             user.setImg("assets/a.webp");
+        }
+        
+         return new RestResult(ResultCode.SUCCESS, user);
+    }
+    @Override
+    public RestResult setImg(String img, HttpServletRequest request) {
+        User user =(User)request.getSession().getAttribute("user");
+        if(user==null)
+        {
+            user=new User();
+            user.setId(3);
+        }
+        user.setImg(img);
+        userDao.updateUser(user);
+        
+        return new RestResult(ResultCode.SUCCESS, null);
     }
 
 

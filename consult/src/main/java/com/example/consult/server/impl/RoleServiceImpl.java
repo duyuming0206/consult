@@ -5,6 +5,9 @@ import com.example.consult.entity.RestResult;
 import com.example.consult.entity.ResultCode;
 import com.example.consult.entity.Role;
 import com.example.consult.server.RoleService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +20,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RestResult getRoleById(int roleID) {
         try {
-            Role role = roleDao.getRole(roleID);
+            List<Role> role = roleDao.getRole(roleID);
             return new RestResult(ResultCode.SUCCESS, role);
         }catch (Exception e){
             return new RestResult(ResultCode.ERROR, e.getMessage());

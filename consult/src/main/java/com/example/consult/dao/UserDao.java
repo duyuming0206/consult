@@ -31,6 +31,10 @@ public interface UserDao {
             + "<if test='password!=null'>password = #{password},</if>"
             + "<if test='name!=null'>name = #{name},</if>"
             + "<if test='phone!=null'>phone = #{phone},</if>"
+            + "<if test='block!=null'>block = #{block},</if>"
+            + "<if test='address!=null'>address = #{address},</if>"
+            + "<if test='email!=null'>email = #{email},</if>"
+            + "<if test='img!=null'>img = #{img},</if>"
             + "roleID = #{roleID} where id = #{id}"
             + "</script>"})
     public void updateUser(User user);

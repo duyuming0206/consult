@@ -21,4 +21,6 @@ public interface UserService {
     public RestResult deleteUser(int[] list);
 
     public RestResult updateUser(User user, HttpServletRequest request);
+    public RestResult getuser(HttpServletRequest request);
+    public RestResult setImg(String img,HttpServletRequest request);
 }

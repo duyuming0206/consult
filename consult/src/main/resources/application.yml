@@ -1,10 +1,8 @@
 server:
-  server.port: 8858
+  port: 8858
 spring:
   datasource:
-    username:
-    password:
+    username: root
+    password: 123456
     url: jdbc:mysql://123.56.144.108:3306/consult?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
-  thymeleaf:
-    prefix: classpath:/html/

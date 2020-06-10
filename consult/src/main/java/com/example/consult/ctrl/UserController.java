@@ -5,10 +5,12 @@ import com.example.consult.entity.User;
 import com.example.consult.server.RoleService;
 import com.example.consult.server.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 public class UserController {
@@ -19,13 +21,14 @@ public class UserController {
     @Autowired
     RoleService roleService;
 
-    @RequestMapping("regist")
+    @RequestMapping("api/regist")
     public RestResult regist(User user){
         return userService.regist(user);
     }
 
-    @RequestMapping("login")
+    @RequestMapping("api/login")
     public RestResult login(User user, HttpServletRequest request){
+        System.out.println(request.getSession().getId());
         return userService.login(user, request);
     }
 
@@ -39,13 +42,27 @@ public class UserController {
         return userService.deleteUser(list);
     }
 
-    @RequestMapping("updateUser")
+    @RequestMapping("api/updateUser")
     public RestResult updateUser(User user, HttpServletRequest request) {
         return userService.updateUser(user, request);
     }
 
-    @RequestMapping("getRole")
-    public RestResult getRole(int roleID) {
+    @RequestMapping("api/getRole")
+    public RestResult getRole(HttpServletRequest request) {
+        int roleID=1;
+        User user=(User)request.getSession().getAttribute("user");
+        if(user!=null)
+        {
+            roleID=user.getRoleID();
+        }
         return roleService.getRoleById(roleID);
+    }
+    @RequestMapping("api/getUser")
+    public RestResult getUser(HttpServletRequest request) {
+        return userService.getuser(request);
+    }
+    @RequestMapping("api/setImg")
+    public RestResult getUser(String img,HttpServletRequest request) {
+        return userService.setImg(img, request);
     }
 }
